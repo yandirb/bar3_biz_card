@@ -1,0 +1,260 @@
+nav{
+
+    background:white;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+nav ul{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:30px;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+nav a:hover{
+
+    color:var(--secondary);
+
+}
+.nav-container{
+
+    max-width:var(--max-width);
+
+    margin:auto;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.logo{
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+/* ---------- Hero ---------- */
+
+header{
+
+    /*background:var(--primary);*/
+
+    color:white;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,var(--primary),#0D5C87);
+
+}
+header h1{
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+}
+header h2{
+
+    font-weight:normal;
+
+    margin-bottom:20px;
+
+}
+header p{
+
+    max-width:700px;
+
+    margin:0 auto 35px;
+
+    font-size:1.1rem;
+
+}
+.button{
+
+    background:var(--accent);
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    font-size:1rem;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+.button:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.90;
+
+}
+.company-name{
+
+    margin-top:20px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    color:#DCE7F3;
+
+    font-size:.9rem;
+
+}
+.hero-badge{
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:.85rem;
+
+    margin-bottom:25px;
+
+}
+/* ==============================
+   Services
+================================ */
+
+.service-grid{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+.service-card{
+
+    flex:1 1 300px;
+
+    background:#F8FAFC;
+
+    border-radius:10px;
+
+    padding:35px;
+
+    border-left:5px solid var(--secondary);
+
+    transition:.30s;
+
+    text-align:center;
+
+}
+.service-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow);
+
+}
+.service-card h3{
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+}
+.about-grid{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    text-align:center;
+
+}
+
+.about-grid div{
+
+    flex:1;
+
+    min-width:220px;
+
+}
+.service-card i{
+
+    font-size:2.5rem;
+
+    color:var(--secondary);
+
+    margin-bottom:20px;
+
+    display:block;
+
+}
+
+
+footer{
+
+    background:#1D1D1D;
+
+    color:white;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+}
+
+footer p{
+
+    margin:8px 0;
+
+}

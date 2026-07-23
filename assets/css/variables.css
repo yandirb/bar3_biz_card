@@ -1,0 +1,17 @@
+/* ---------- CSS Variables ---------- */
+
+:root{
+
+    --primary:#0B3C5D;
+    --secondary:#328CC1;
+    --accent:#D9B310;
+
+    --background:#F5F7FA;
+    --white:#FFFFFF;
+    --text:#333333;
+
+    --max-width:1100px;
+
+    --shadow:0px 8px 25px rgba(0,0,0,.10);
+
+}
