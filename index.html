@@ -224,15 +224,82 @@
             or simply want to discuss an idea, I'd be happy to connect.
             </p>
 
-            <p>
+            <form
+                id="contactForm"
+                action="https://formspree.io/f/meeyryld"
+                method="POST">
 
-            <strong>Email</strong><br>
+                <label for="name">Name</label>
 
-            <a href="mailto:yandi@bar3solutions.com">
-            yandi@bar3solutions.com
-            </a>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required>
 
-            </p>
+                <label for="company">Company</label>
+
+                <input
+                    type="text"
+                    id="company"
+                    name="company">
+
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required>
+
+                <label for="projectType">
+                    Project Type
+                </label>
+
+                <select
+                    id="projectType"
+                    name="project">
+
+                    <option>Automation</option>
+
+                    <option>PLC Programming</option>
+
+                    <option>Machine Vision</option>
+
+                    <option>Robotics</option>
+
+                    <option>Engineering Consulting</option>
+
+                    <option>Other</option>
+
+                </select>
+
+                <label for="message">
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    required></textarea>
+
+                <div
+                    class="cf-turnstile"
+                    data-sitekey="0x4AAAAAAD8-I1Um9xmI5i4i">
+                </div>
+
+                <button
+                    class="button"
+                    type="submit">
+
+                    Send Message
+
+                </button>
+
+            </form>
+
+            <hr>
 
             <p>
 
@@ -279,6 +346,9 @@
     </footer>
 
     <script src="assets/js/main.js" defer></script>
-
+    <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    defer>
+    </script>
     </body>
 </html>

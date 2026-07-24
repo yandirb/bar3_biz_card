@@ -108,3 +108,18 @@ navLinks.forEach(link => {
     });
 
 });
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", () => {
+
+        const button = contactForm.querySelector("button");
+
+        button.disabled = true;
+
+        button.textContent = "Sending...";
+
+    });
+
+}

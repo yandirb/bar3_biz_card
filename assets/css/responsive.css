@@ -86,6 +86,11 @@
         display:flex;
 
     }
+    #contactForm{
+
+        gap:15px;
+
+    }
 }
 
 
