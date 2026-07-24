@@ -108,7 +108,7 @@ navLinks.forEach(link => {
     });
 
 });
-const contactForm = document.getElementById("contactForm");
+/*const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
 
@@ -119,6 +119,81 @@ if (contactForm) {
         button.disabled = true;
 
         button.textContent = "Sending...";
+
+    });
+
+}*/
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+    const status = document.getElementById("formStatus");
+
+    const submitButton = contactForm.querySelector("button");
+
+    contactForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        submitButton.disabled = true;
+
+        submitButton.textContent = "Sending...";
+
+        status.textContent = "";
+
+        status.className = "form-status";
+
+        const formData = new FormData(contactForm);
+
+        try {
+
+            const response = await fetch("https://formspree.io/f/meeyryld", {
+
+                method: "POST",
+
+                body: formData,
+
+                headers: {
+
+                    Accept: "application/json"
+
+                }
+
+            });
+
+            if (response.ok) {
+
+                status.textContent =
+                    "✓ Thank you! Your message has been sent.";
+
+                status.classList.add("success");
+
+                contactForm.reset();
+
+                if (window.turnstile) {
+
+                    turnstile.reset();
+
+                }
+
+            } else {
+
+                throw new Error();
+
+            }
+
+        } catch {
+
+            status.textContent =
+                "Unable to send your message. Please try again.";
+
+            status.classList.add("error");
+
+        }
+
+        submitButton.disabled = false;
+
+        submitButton.textContent = "Send Message";
 
     });
 

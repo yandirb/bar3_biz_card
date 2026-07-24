@@ -395,3 +395,22 @@ footer p{
     margin-top:10px;
 
 }
+.form-status{
+
+    min-height:24px;
+
+    font-weight:600;
+
+}
+
+.form-status.success{
+
+    color:#198754;
+
+}
+
+.form-status.error{
+
+    color:#C62828;
+
+}
