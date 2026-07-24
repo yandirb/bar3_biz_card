@@ -1,3 +1,4 @@
+console.log("main.js loaded");
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     anchor.addEventListener("click", function (event) {
@@ -131,9 +132,13 @@ if (contactForm) {
 
     const submitButton = contactForm.querySelector("button");
 
+    console.log(contactForm);
+
     contactForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
+
+        console.log("SUBMIT INTERCEPTED");
 
         submitButton.disabled = true;
 
