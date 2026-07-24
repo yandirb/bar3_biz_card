@@ -37,5 +37,55 @@
     padding:30px 15px;
 
     }
+    .nav-toggle{
 
+        display:block;
+
+    }
+    .nav-container{
+        position:relative;
+    }
+    .nav-menu{
+
+        display:none;
+
+        position:absolute;
+
+        top:100%;
+
+        left:0;
+
+        width:100%;
+
+        background:white;
+
+        flex-direction:column;
+
+        gap:0px;
+        
+        padding:10px 0;
+
+        box-shadow:var(--shadow);
+        
+    }
+    .nav-menu li{
+
+    width:100%;
+
+    }
+
+    .nav-menu li a{
+
+        display:block;
+
+        padding:15px 20px;
+
+    }
+    .nav-menu.active{
+
+        display:flex;
+
+    }
 }
+
+

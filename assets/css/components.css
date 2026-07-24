@@ -11,7 +11,7 @@ nav{
     z-index:1000;
 
 }
-nav ul{
+.nav-menu{
 
     display:flex;
 
@@ -81,12 +81,12 @@ header{
 
     align-items:center;
 
-    background:linear-gradient(135deg,var(--primary),#0D5C87);
+    background:linear-gradient(135deg,var(--primary),#c9d3de);
 
 }
 header h1{
 
-    font-size:3rem;
+    /*font-size:3rem;*/
 
     margin-bottom:15px;
 
@@ -104,7 +104,7 @@ header p{
 
     margin:0 auto 35px;
 
-    font-size:1.1rem;
+    /*font-size:1.1rem;*/
 
 }
 .button{
@@ -161,6 +161,70 @@ header p{
     margin-bottom:25px;
 
 }
+.logo{
+    display:flex;
+    flex-direction:column;
+    line-height:1;
+}
+
+.logo-bar3{
+    font-size:1.4rem;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.logo-solutions{
+    font-size:.8rem;
+    text-transform:uppercase;
+    color:var(--secondary);
+    letter-spacing:3px;
+}
+.nav-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    font-size:2rem;
+
+    line-height:1;
+    width:44px;
+    height:44px;
+    padding:0;
+    cursor:pointer;
+
+    color:var(--primary);
+
+}
+.nav-menu a.active{
+
+    color:var(--secondary);
+
+}
+.skip-link{
+
+    position:absolute;
+
+    left:-999px;
+
+}
+
+.skip-link:focus{
+
+    left:20px;
+
+    top:20px;
+
+    background:white;
+
+    padding:12px;
+
+    z-index:9999;
+
+}
+
 /* ==============================
    Services
 ================================ */
@@ -180,6 +244,12 @@ header p{
 
     flex:1 1 300px;
 
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+
+    min-height:280px;
+
     background:#F8FAFC;
 
     border-radius:10px;
@@ -188,16 +258,20 @@ header p{
 
     border-left:5px solid var(--secondary);
 
-    transition:.30s;
+    transition:transform .25s ease,
+               box-shadow .25s ease,
+               border-color .25s ease;
 
     text-align:center;
 
 }
 .service-card:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-8px);
 
-    box-shadow:var(--shadow);
+    border-left-color:var(--accent);
+
+    box-shadow:0 14px 30px rgba(0,0,0,.14);
 
 }
 .service-card h3{
