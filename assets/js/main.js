@@ -109,7 +109,7 @@ navLinks.forEach(link => {
     });
 
 });
-/*const contactForm = document.getElementById("contactForm");
+const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
 
@@ -123,8 +123,8 @@ if (contactForm) {
 
     });
 
-}*/
-const contactForm = document.getElementById("contactForm");
+}
+/*const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
 
@@ -202,4 +202,4 @@ if (contactForm) {
 
     });
 
-}
+}*/
