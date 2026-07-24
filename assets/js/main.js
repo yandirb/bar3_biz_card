@@ -124,6 +124,7 @@ if (contactForm) {
     });
 
 }
+/* test */
 /*const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
