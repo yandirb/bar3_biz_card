@@ -56,7 +56,7 @@ export async function onRequest(context) {
     }
 
     const resend = new Resend(context.env.RESEND_API_KEY);
-
+    try{
     await resend.emails.send({
         from: context.env.FROM_EMAIL,
         to: context.env.TO_EMAIL,
@@ -78,7 +78,15 @@ export async function onRequest(context) {
         <p>${message.replace(/\n/g,"<br>")}</p>
         `
     });
+    }
+    catch(err){
 
+    return Response.json({
+        success:false,
+        error:err.message
+    },{status:500});
+
+    }
     return Response.json({
         success: true
     });
