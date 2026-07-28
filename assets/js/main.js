@@ -115,6 +115,8 @@ const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", async (e) => {
 
+    console.log("Submit intercepted");
+
     e.preventDefault();
 
     const button = form.querySelector("button");
