@@ -1,0 +1,26 @@
+{
+  "name": "bar3_biz_card",
+  "version": "1.0.0",
+  "description": "A responsive static website built with HTML, CSS, and JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yandirb/bar3_biz_card.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yandirb/bar3_biz_card/issues"
+  },
+  "homepage": "https://github.com/yandirb/bar3_biz_card#readme",
+  "devDependencies": {
+    "wrangler": "^4.115.0"
+  },
+  "dependencies": {
+    "resend": "^6.18.1"
+  }
+}
