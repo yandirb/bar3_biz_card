@@ -1,3 +1,5 @@
+import { Resend } from "resend";
+
 export async function onRequest(context) {
 
     if (context.request.method !== "POST") {
@@ -6,49 +8,46 @@ export async function onRequest(context) {
         });
     }
 
-    const formData = await context.request.formData();
+    const form = await context.request.formData();
 
-    const token = formData.get("cf-turnstile-response");
+    const name = form.get("name");
+    const company = form.get("company");
+    const email = form.get("email");
+    const project = form.get("project");
+    const message = form.get("message");
+
+    const token = form.get("cf-turnstile-response");
 
     if (!token) {
         return Response.json(
-            {
-                success: false,
-                error: "Missing Turnstile token."
-            },
-            {
-                status: 400
-            }
+            { success: false, error: "Missing Turnstile token." },
+            { status: 400 }
         );
     }
-
-    const ip =
-        context.request.headers.get("CF-Connecting-IP");
 
     const verify = await fetch(
         "https://challenges.cloudflare.com/turnstile/v0/siteverify",
         {
             method: "POST",
             headers: {
-                "Content-Type":
-                    "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded"
             },
             body: new URLSearchParams({
                 secret: context.env.TURNSTILE_SECRET,
                 response: token,
-                remoteip: ip ?? ""
+                remoteip:
+                    context.request.headers.get("CF-Connecting-IP") ?? ""
             })
         }
     );
 
-    const result = await verify.json();
+    const turnstile = await verify.json();
 
-    if (!result.success) {
-
+    if (!turnstile.success) {
         return Response.json(
             {
                 success: false,
-                turnstile: result
+                error: "Turnstile validation failed."
             },
             {
                 status: 403
@@ -56,9 +55,32 @@ export async function onRequest(context) {
         );
     }
 
+    const resend = new Resend(context.env.RESEND_API_KEY);
+
+    await resend.emails.send({
+        from: context.env.FROM_EMAIL,
+        to: context.env.TO_EMAIL,
+        replyTo: email,
+        subject: `BAR3 Website - ${project}`,
+        html: `
+        <h2>New Website Inquiry</h2>
+
+        <p><strong>Name:</strong> ${name}</p>
+
+        <p><strong>Company:</strong> ${company}</p>
+
+        <p><strong>Email:</strong> ${email}</p>
+
+        <p><strong>Project:</strong> ${project}</p>
+
+        <hr>
+
+        <p>${message.replace(/\n/g,"<br>")}</p>
+        `
+    });
+
     return Response.json({
-        success: true,
-        message: "Turnstile validated successfully."
+        success: true
     });
 
 }

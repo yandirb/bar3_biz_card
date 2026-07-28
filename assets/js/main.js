@@ -109,6 +109,48 @@ navLinks.forEach(link => {
     });
 
 });
+
+/* Submit button sequence */
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const button = form.querySelector("button");
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+
+    const response = await fetch("/api/contact", {
+        method: "POST",
+        body: new FormData(form)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+
+        alert("Thank you! Your message has been sent.");
+
+        form.reset();
+
+        if (window.turnstile) {
+            turnstile.reset();
+        }
+
+    } else {
+
+        alert(result.error || "Unable to send message.");
+
+    }
+
+    button.disabled = false;
+    button.textContent = "Send Message";
+
+});
+
+/* this is the basic contact form
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
@@ -123,7 +165,10 @@ if (contactForm) {
 
     });
 
-}
+}*/
+
+
+
 /* test */
 /*const contactForm = document.getElementById("contactForm");
 
