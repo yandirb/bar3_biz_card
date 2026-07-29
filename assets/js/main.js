@@ -111,7 +111,70 @@ navLinks.forEach(link => {
 });
 
 /* Submit button sequence */
-const form = document.getElementById("contactForm");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("contactForm");
+
+    if (!form) {
+        console.error("contactForm not found");
+        return;
+    }
+
+    form.addEventListener("submit", async (e) => {
+
+        console.log("Submit intercepted");
+
+        e.preventDefault();
+
+        const button = form.querySelector("button");
+
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        try {
+
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                body: new FormData(form)
+            });
+
+            const result = await response.json();
+
+            console.log(result);
+
+            if (result.success) {
+
+                alert("Message sent!");
+
+                form.reset();
+
+                if (window.turnstile) {
+                    turnstile.reset();
+                }
+
+            } else {
+
+                alert(result.error);
+
+            }
+
+        } catch(err){
+
+            console.error(err);
+
+        } finally{
+
+            button.disabled = false;
+            button.textContent = "Send Message";
+
+        }
+
+    });
+
+});
+
+/*const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", async (e) => {
 
@@ -150,7 +213,7 @@ form.addEventListener("submit", async (e) => {
     button.disabled = false;
     button.textContent = "Send Message";
 
-});
+});*/
 
 /* this is the basic contact form
 const contactForm = document.getElementById("contactForm");
