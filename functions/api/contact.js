@@ -1,5 +1,16 @@
 import { Resend } from "resend";
 
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+}
+
 export async function onRequest(context) {
 
     if (context.request.method !== "POST") {
@@ -10,11 +21,33 @@ export async function onRequest(context) {
 
     const form = await context.request.formData();
 
+    const honeypot = form.get("website");
+
+    if (honeypot) {
+
+        return Response.json(
+            {
+                success: false,
+                error: "Spam detected."
+            },
+            {
+                status: 400
+            }
+        );
+
+    }
+
     const name = form.get("name");
     const company = form.get("company");
     const email = form.get("email");
     const project = form.get("project");
     const message = form.get("message");
+
+    const safeName = escapeHtml(name);
+    const safeCompany = escapeHtml(company);
+    const safeEmail = escapeHtml(email);
+    const safeProject = escapeHtml(project);
+    const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
 
     const token = form.get("cf-turnstile-response");
 
@@ -65,18 +98,21 @@ export async function onRequest(context) {
         html: `
         <h2>New Website Inquiry</h2>
 
-        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
 
-        <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Company:</strong> ${safeCompany}</p>
 
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
 
-        <p><strong>Project:</strong> ${project}</p>
+        <p><strong>Project:</strong> ${safeProject}</p>
 
         <hr>
 
-        <p>${message.replace(/\n/g,"<br>")}</p>
+        <p>${safeMessage}</p>
+
+        
         `
+        /*<p>${message.replace(/\n/g,"<br>")}</p>*/
     });
     }
     catch(err){
